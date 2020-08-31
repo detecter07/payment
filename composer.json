@@ -1,0 +1,14 @@
+{
+    "require": {
+        "symfony/console": "^5.0",
+        "illuminate/database": "^7.26",
+        "illuminate/events": "^7.26"
+    },
+    "autoload": {
+      "files":["bootstrap.php"],
+        "psr-4": {
+            "App\\": "src/",
+            "Console\\": "src"
+        }
+    }
+}
