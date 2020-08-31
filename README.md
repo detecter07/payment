@@ -1,6 +1,3 @@
-# i will define all command that we need 
-
-
 #list all command of the application
  php console.php list 
  
@@ -13,14 +10,14 @@
  php console.php  konto:uebersicht  
  
  Available commands:
-  auszahlen              Geld auszahlen
-  einzahlen              einzahlung command
-  help                   Displays help for a command
-  list                   Lists commands
-  ueberweisung           Überweisung auführen .
+    auszahlen              Geld auszahlen
+    einzahlen              einzahlung command
+    help                   Displays help for a command
+   list                   Lists commands
+   ueberweisung           Überweisung auführen .
  generate
-  generate:Auszahlung    generate Auszahlung table
-  generate:einzahlung    generate entity
-  generate:ueberweisung  generate entity
+    generate:Auszahlung    generate Auszahlung table
+    generate:einzahlung    generate entity
+    generate:ueberweisung  generate entity
  konto
-  konto:uebersicht       Geld auszahlen
+    konto:uebersicht       Geld auszahlen
