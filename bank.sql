@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 31. Aug 2020 um 05:31
+-- Erstellungszeit: 31. Aug 2020 um 06:17
 -- Server-Version: 10.4.13-MariaDB
 -- PHP-Version: 7.2.32
 
@@ -72,7 +72,8 @@ INSERT INTO `einzahlung` (`id`, `beitrag`, `konto_id`, `created_at`, `updated_at
 (6, 200, 2, '2020-08-31 00:08:36', '2020-08-31 00:08:36'),
 (7, 400, 2, '2020-08-31 00:39:01', '2020-08-31 00:39:01'),
 (8, 400, 1, '2020-08-31 01:17:36', '2020-08-31 01:17:36'),
-(9, 400, 2, '2020-08-31 01:20:14', '2020-08-31 01:20:14');
+(9, 400, 2, '2020-08-31 01:20:14', '2020-08-31 01:20:14'),
+(10, 400, 3, '2020-08-31 03:55:20', '2020-08-31 03:55:20');
 
 -- --------------------------------------------------------
 
@@ -96,7 +97,9 @@ CREATE TABLE `kontos` (
 
 INSERT INTO `kontos` (`id`, `konto_inhaber`, `konto_nummer`, `status`, `konto_stand`, `created_at`, `updated_at`) VALUES
 (1, 'Anass Hobban', 'DE2231247896522257123', 1, 200, '2020-08-30 18:16:55', '2020-08-31 01:27:39'),
-(2, 'albert Sams', 'DE2231247896522257857', 1, 900, '2020-08-30 18:16:55', '2020-08-31 01:20:14');
+(2, 'albert Sams', 'DE2231247896522257857', 1, 900, '2020-08-30 18:16:55', '2020-08-31 01:20:14'),
+(3, 'samir', 'DE2231247896522257821', 1, 400, '2020-08-31 03:54:31', '2020-08-31 03:55:20'),
+(6, 'simon', 'DE2231247896522253263', 1, 0, '2020-08-31 04:07:15', '2020-08-31 04:07:15');
 
 -- --------------------------------------------------------
 
@@ -188,7 +191,8 @@ ALTER TABLE `einzahlung`
 -- Indizes für die Tabelle `kontos`
 --
 ALTER TABLE `kontos`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `konto_inhaber` (`konto_inhaber`);
 
 --
 -- Indizes für die Tabelle `todos`
@@ -224,13 +228,13 @@ ALTER TABLE `auszahlung`
 -- AUTO_INCREMENT für Tabelle `einzahlung`
 --
 ALTER TABLE `einzahlung`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT für Tabelle `kontos`
 --
 ALTER TABLE `kontos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT für Tabelle `todos`
