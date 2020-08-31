@@ -9,15 +9,15 @@
 
  php console.php  konto:uebersicht  
  
- Available commands:
+ #Available commands:
     auszahlen              Geld auszahlen
     einzahlen              einzahlung command
     help                   Displays help for a command
    list                   Lists commands
    ueberweisung           Überweisung auführen .
- generate
+ #generate
     generate:Auszahlung    generate Auszahlung table
     generate:einzahlung    generate entity
     generate:ueberweisung  generate entity
- konto
+ #konto
     konto:uebersicht       Geld auszahlen
