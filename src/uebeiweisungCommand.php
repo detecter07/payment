@@ -21,7 +21,7 @@ class uebeiweisungCommand extends Command
     public function configure()
     {
         $this->setName('ueberweisung')
-            ->setDescription('Greet a user based on the time of the day.')
+            ->setDescription('Überweisung auführen .')
             ->setHelp('This command allows you to greet a user based on the time of the day...')
             ->addArgument('beitrag', InputArgument::REQUIRED, 'your beitrag')
             ->addArgument('konto_src', InputArgument::REQUIRED, 'konto from')
