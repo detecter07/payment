@@ -29,44 +29,48 @@ class KontoController
     }
     public function addkonto($konto_inhaber, $konto_nummer)
     {
-
         try {
-            $konto = new Konto;
+            $konto = new Konto();
 
             $konto->konto_inhaber = $konto_inhaber;
 
             $konto->konto_nummer = $konto_nummer;
 
-            $konto = Konto::create([
-                'konto_inhaber' => $konto_inhaber,
-                'konto_nummer' => $konto_nummer
-            ]);
+            $konto->konto_stand = 0;
 
-            if ($konto) {
+            $konto->status = 1;
+
+            $konto_list = Konto::Where('konto_nummer', $konto_nummer)->first();
+
+            if ($konto && $konto_list['konto_inhaber'] !== $konto->konto_inhaber ) {
                 $konto->save();
-                $_REQUEST['SESSION'] = $konto['konto_inhaber'];
-
-                echo $_REQUEST['SESSION'];
+                echo "record created";
+            }else{
+              echo "The record is not added";
             }
         } catch (PDOException $ex) {
             echo $ex->getMessage();
         }
     }
 
-    public static function konto_exists(string $konto_nummer): bool
+    public function activatekonto($konto_nummer)
     {
-        $konto_num = Konto::select('konto_nummer')->get()->toArray();
+        try {
 
-        //var_dump($konto_num);
+            $konto_list = Konto::Where('konto_nummer', $konto_nummer)->first();
 
-        if (in_array($konto_nummer, $konto_num)) {
-            return true;
-            //echo "ok";
-        } else {
-            //echo "no ok ";
-            return false;
+            if ($konto_list['status'] === 0  ) {
+              $konto->status = 1;
+                $konto->save();
+                echo "konto is now active";
+            }else{
+              echo "konto is already active";
+            }
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
         }
     }
+
 
     public static function Einzahlen($beitrag, $konto_nummer): void
     {
@@ -75,7 +79,7 @@ class KontoController
             $konto = Konto::Where('konto_nummer', $konto_nummer)->first();
 
 
-            if ($beitrag < 5000) {
+            if ($beitrag < 5000 ) {
 
                 $einzahlung = new Einzahlung();
 
@@ -232,63 +236,5 @@ class KontoController
         return date_format($datetime, 'd.m.Y H:i:s');
     }
 
-    public function konto_status(): array
-    {
-        $konto_list = konto::all();
-        $konto = [];
 
-        foreach ($konto_list as $list) {
-            $konto[] = $list;
-        }
-
-        return $konto;
-    }
-
-
-
-
-
-
-    public function getKontStand(int $konto_id): float
-    {
-        $sum = [];
-
-        $einzahlung = Einzahlung::where('konto_id', $konto_id)->get();
-
-        foreach ($einzahlung as $s) {
-            $sum[] = $s->beitrag;
-        }
-
-        $total = array_sum($sum);
-
-
-        return $total;
-    }
-
-    public function IBANadd(string $iban)
-    {
-
-        if (validation::validatekonto($iban)) {
-
-            return True;
-        } else {
-
-            return FALSE;
-        }
-    }
-    public function Einzahlungen(int $konto_id): array
-    {
-
-        $list = Einzahlung::geteinzahlung_byID($konto_id);
-        return $list;
-    }
-
-    public function __toString()
-    {
-        return $this->konto_list;
-    }
-
-    public function ueberzeisung($konto_source, $konto_ziel, $beitrag)
-    {
-    }
 }

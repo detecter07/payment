@@ -17,7 +17,7 @@ class kontoSeader
 
             $table->string('konto_inhaber');
 
-            $table->string('konto_nummer');
+            $table->string('konto_nummer')->unique();
 
             $table->boolean('status');
 
